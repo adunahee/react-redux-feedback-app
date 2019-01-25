@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
+
+//components
+import BeginFeedback from './../Feedback/BeginFeedback.js'
 
 class App extends Component {
 
@@ -11,11 +15,11 @@ class App extends Component {
 
   getFeedback = () => {
     axios({
-      method: 'GET', 
-      url: '/feedback', 
+      method: 'GET',
+      url: '/feedback',
     }).then((response) => {
       console.log(response.data);
-      this.props.dispatch({type: "STORE_FEEDBACK", payload: response.data})
+      this.props.dispatch({ type: "STORE_FEEDBACK", payload: response.data })
     }).catch((error) => {
       console.log('error in getFeedback', error);
     })
@@ -28,7 +32,15 @@ class App extends Component {
           <h1 className="App-title">Feedback!</h1>
           <h4><i>Don't forget it!</i></h4>
         </header>
-        <br/>
+        <Router>
+          <div>
+            <nav>
+              <Link to='/'>Begin Feedback</Link>
+            </nav>
+            <Route exact path='/' component={BeginFeedback}></Route>
+          </div>
+        </Router>
+        <br />
       </div>
     );
   }
