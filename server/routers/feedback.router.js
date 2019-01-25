@@ -10,7 +10,7 @@ const pool = new pg.Pool({
     idleTimeoutMillis: 10000,
 });
 
-router.get('/', (req, res) => {
+router.get('', (req, res) => {
     pool.query('SELECT * FROM "feedback";').then(result => {
         res.send(result.rows);
     }).catch(error => {

@@ -11,14 +11,22 @@ import logger from 'redux-logger';
 
 //reducer to store feedback in state as object with key, properties
 const feedbackDefaultState = {feeling: 3, understanding: 4, support: 5, comments: "Pulling through!"}
-const feedback = (state = feedbackDefaultState, action) => {
+const clientFeedback = (state = feedbackDefaultState, action) => {
     //action types for each page of the feedback
+    return state;
+}
+
+const serverFeedback = (state = [], action) => {
+    if(action.type === "STORE_FEEDBACK") {
+        return action.payload;
+    }
     return state;
 }
 
 const storeInstance = createStore(
     combineReducers({
-        feedback,
+        clientFeedback,
+        serverFeedback
     }),
     applyMiddleware(logger),
 );
