@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './App.css';
 import { connect } from 'react-redux';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
@@ -12,24 +11,9 @@ import Support from './../Feedback/Support.js';
 import Comments from './../Feedback/Comments.js';
 import FeedbackSummary from './../Feedback/FeedbackSummary.js';
 import SuccessfulSubmit from './../Feedback/SuccessfulSubmit.js';
+import AdminTable from './../Admin/AdminTable.js';
 
 class App extends Component {
-
-  componentDidMount() {
-    this.getFeedback();
-  }
-
-  getFeedback = () => {
-    axios({
-      method: 'GET',
-      url: '/feedback',
-    }).then((response) => {
-      // console.log(response.data);
-      this.props.dispatch({ type: "STORE_FEEDBACK", payload: response.data })
-    }).catch((error) => {
-      console.log('error in getFeedback', error);
-    })
-  }
 
   render() {
     return (
@@ -60,6 +44,9 @@ class App extends Component {
               <li>
                 <Link to='/submitted'>Successful Submit</Link>
               </li>
+              <li>
+                <Link to='/admin'>Admin</Link>
+              </li>
             </nav>
 
             <Route exact path='/' component={BeginFeedback}></Route>
@@ -69,6 +56,7 @@ class App extends Component {
             <Route exact path='/ongoing/comments' component={Comments}></Route>
             <Route path = '/ongoing' component={FeedbackSummary}></Route>
             <Route exact path = '/submitted' component={SuccessfulSubmit}></Route>
+            <Route exact path = '/admin' component={AdminTable}></Route>
           </div>
         </Router>
         <br />
