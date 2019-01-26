@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 class BeginFeedback extends Component {
 
     startFeedback = () => {
-        this.props.history.push('/feeling');
+        this.props.history.push('/ongoing/feeling');
     }
 
   render() {

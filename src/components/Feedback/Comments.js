@@ -11,6 +11,7 @@ class Comments extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.dispatch({type: 'UPDATE_COMMENTS', payload: this.state})
+        this.props.history.push('/ongoing');
     }
 
     handleChange = (event) => {

@@ -10,7 +10,7 @@ import {Provider} from 'react-redux';
 import logger from 'redux-logger';
 
 //reducer to store feedback in state as object with key, properties
-const feedbackDefaultState = {feeling: 3, understanding: 4, support: 5, comments: "Pulling through!"}
+const feedbackDefaultState = {feeling: null, understanding: null, support: null, comments: null}
 const clientFeedback = (state = feedbackDefaultState, action) => {
     switch (action.type) {
         case 'UPDATE_FEELING':

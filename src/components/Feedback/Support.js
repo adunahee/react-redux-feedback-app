@@ -19,7 +19,7 @@ class Support extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.dispatch({ type: 'UPDATE_SUPPORT', payload: this.state });
-        this.props.history.push('/comments');
+        this.props.history.push('/ongoing/comments');
     }
 
     render() {

@@ -19,7 +19,7 @@ class Feeling extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.dispatch({ type: 'UPDATE_FEELING', payload: this.state });
-        this.props.history.push('/understanding');
+        this.props.history.push('/ongoing/understanding');
     }
 
     render() {

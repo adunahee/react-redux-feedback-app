@@ -45,27 +45,27 @@ class App extends Component {
                 <Link to='/'>Begin Feedback</Link>
               </li>
               <li>
-                <Link to='/feeling'>Feeling</Link>
+                <Link to='/ongoing/feeling'>Feeling</Link>
               </li>
               <li>
-                <Link to='/understanding'>Understanding</Link>
+                <Link to='/ongoing/understanding'>Understanding</Link>
               </li>
               <li>
-                <Link to='/support'>Support</Link>
+                <Link to='/ongoing/support'>Support</Link>
               </li>
               <li>
-                <Link to='/comments'>Comments</Link>
+                <Link to='/ongoing/comments'>Comments</Link>
               </li>
             </nav>
 
             <Route exact path='/' component={BeginFeedback}></Route>
-            <Route exact path='/feeling' component={Feeling}></Route>
-            <Route exact path='/understanding' component={Understanding}></Route>
-            <Route exact path='/support' component={Support}></Route>
-            <Route exact path='/comments' component={Comments}></Route>
+            <Route exact path='/ongoing/feeling' component={Feeling}></Route>
+            <Route exact path='/ongoing/understanding' component={Understanding}></Route>
+            <Route exact path='/ongoing/support' component={Support}></Route>
+            <Route exact path='/ongoing/comments' component={Comments}></Route>
+            <Route path = '/ongoing' component={FeedbackSummary}></Route>
           </div>
         </Router>
-        <FeedbackSummary />
         <br />
       </div>
     );
