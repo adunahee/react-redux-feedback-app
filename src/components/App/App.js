@@ -11,6 +11,7 @@ import Understanding from './../Feedback/Understanding.js';
 import Support from './../Feedback/Support.js';
 import Comments from './../Feedback/Comments.js';
 import FeedbackSummary from './../Feedback/FeedbackSummary.js';
+import SuccessfulSubmit from './../Feedback/SuccessfulSubmit.js';
 
 class App extends Component {
 
@@ -56,6 +57,9 @@ class App extends Component {
               <li>
                 <Link to='/ongoing/comments'>Comments</Link>
               </li>
+              <li>
+                <Link to='/submitted'>Successful Submit</Link>
+              </li>
             </nav>
 
             <Route exact path='/' component={BeginFeedback}></Route>
@@ -64,6 +68,7 @@ class App extends Component {
             <Route exact path='/ongoing/support' component={Support}></Route>
             <Route exact path='/ongoing/comments' component={Comments}></Route>
             <Route path = '/ongoing' component={FeedbackSummary}></Route>
+            <Route exact path = '/submitted' component={SuccessfulSubmit}></Route>
           </div>
         </Router>
         <br />

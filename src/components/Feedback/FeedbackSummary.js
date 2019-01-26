@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Axios from 'axios';
 
 class FeedbackSummary extends Component {
+
+    handleSubmitClick = () => {
+        Axios({
+            method: 'POST',
+            url: '/feedback',
+            data: this.props.reduxState.clientFeedback,
+        }).then ( (response) => {
+            this.history.push('/submitted');
+        }).catch( (error) => {
+            alert(`We could not submit your feedback at this time. Please contact your instructor.`);
+            console.log(error);
+        })
+    }
 
     conditionalButton = () => {
         const feedbackValues = Object.values(this.props.reduxState.clientFeedback);
         if (feedbackValues.every((value) => { return value !== null })) {
-            return <button onClick={this.handleFeedbackPost}>Submit Feedback</button>
+            return <button onClick={this.handleSubmitClick}>Submit Feedback</button>
         } else {
-            return <button disabled onClick={this.handleFeedbackPost}>Incomplete Survey</button>
+            return <button disabled>Incomplete Survey</button>
         }
     }
 
