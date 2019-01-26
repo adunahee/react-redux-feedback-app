@@ -15,6 +15,12 @@ const clientFeedback = (state = feedbackDefaultState, action) => {
     switch (action.type) {
         case 'UPDATE_FEELING':
         return {...state, ...action.payload}
+        case 'UPDATE_UNDERSTANDING':
+            return { ...state, ...action.payload }
+        case 'UPDATE_SUPPORT':
+            return { ...state, ...action.payload }
+        case 'UPDATE_COMMENTS':
+            return { ...state, ...action.payload }
         default:
             break;
     }

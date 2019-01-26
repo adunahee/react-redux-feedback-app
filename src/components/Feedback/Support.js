@@ -2,30 +2,30 @@ import React, { Component } from 'react';
 import RadioButtonForm from './RadioButtonForm';
 import { connect } from 'react-redux';
 
-class Understanding extends Component {
+class Support extends Component {
     constructor() {
         super();
         this.state = {
-            understanding: '',
+            support: '',
         }
     }
 
     handleRadioChange = (number) => {
         this.setState({
-            understanding: Number(number),
+            support: Number(number),
         })
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.dispatch({ type: 'UPDATE_UNDERSTANDING', payload: this.state })
-        this.props.history.push('/support');
+        this.props.dispatch({ type: 'UPDATE_SUPPORT', payload: this.state });
+        this.props.history.push('/comments');
     }
 
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <h2>How well did you understand today material?</h2>
+                <h2>Did you feel supported today?</h2>
                 <RadioButtonForm handleRadioChange={this.handleRadioChange} />
                 <br />
                 <button type='submit'>Next</button>
@@ -34,4 +34,4 @@ class Understanding extends Component {
     }
 }
 
-export default connect()(Understanding);
+export default connect()(Support);

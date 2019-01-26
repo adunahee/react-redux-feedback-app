@@ -7,7 +7,9 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom';
 //components
 import BeginFeedback from './../Feedback/BeginFeedback.js';
 import Feeling from './../Feedback/Feeling.js';
-import Understanding from './../Feedback/Understanding';
+import Understanding from './../Feedback/Understanding.js';
+import Support from './../Feedback/Support.js';
+import Comments from './../Feedback/Comments.js'
 
 class App extends Component {
 
@@ -38,13 +40,28 @@ class App extends Component {
           <div>
             <nav>
               <p>Remove Links Later</p>
-              <Link to='/'>Begin Feedback</Link>
-              <Link to='/feeling'>Feeling</Link>
-              <Link to='/understanding'>Understanding</Link>
+              <li>
+                <Link to='/'>Begin Feedback</Link>
+              </li>
+              <li>
+                <Link to='/feeling'>Feeling</Link>
+              </li>
+              <li>
+                <Link to='/understanding'>Understanding</Link>
+              </li>
+              <li>
+                <Link to='/support'>Support</Link>
+              </li>
+              <li>
+                <Link to='/comments'>Comments</Link>
+              </li>
             </nav>
+
             <Route exact path='/' component={BeginFeedback}></Route>
             <Route exact path='/feeling' component={Feeling}></Route>
             <Route exact path='/understanding' component={Understanding}></Route>
+            <Route exact path='/support' component={Support}></Route>
+            <Route exact path='/comments' component={Comments}></Route>
           </div>
         </Router>
         <br />
