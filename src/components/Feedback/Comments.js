@@ -23,7 +23,7 @@ class Comments extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <h2>What comments do you have for your instructors from today?</h2>
+        <h2>Optional: Please share any comments you have for instructor.</h2>
         <textarea placeholder='Write your response here.' onChange={this.handleChange}></textarea>
         <br/>
         <button type="submit">Next</button>

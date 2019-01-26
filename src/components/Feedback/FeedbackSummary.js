@@ -9,9 +9,9 @@ class FeedbackSummary extends Component {
             method: 'POST',
             url: '/feedback',
             data: this.props.reduxState.clientFeedback,
-        }).then ( (response) => {
-            this.history.push('/submitted');
-        }).catch( (error) => {
+        }).then((response) => {
+            this.props.history.push('/submitted');
+        }).catch((error) => {
             alert(`We could not submit your feedback at this time. Please contact your instructor.`);
             console.log(error);
         })
@@ -28,10 +28,10 @@ class FeedbackSummary extends Component {
 
     conditionalSummary = () => {
         const fullSummary = [
-            <li>Feeling: {this.props.reduxState.clientFeedback.feeling} out of 5.</li>,
-            <li>Understanding: {this.props.reduxState.clientFeedback.understanding} out of 5. </li>,
-            <li>Staff Support: {this.props.reduxState.clientFeedback.support} out of 5.</li>,
-            <li>Additional Comment: {this.props.reduxState.clientFeedback.comments}</li>,
+            <li key={0}>Feeling: {this.props.reduxState.clientFeedback.feeling} out of 5</li>,
+            <li key={1}>Understanding: {this.props.reduxState.clientFeedback.understanding} out of 5</li>,
+            <li key={2}>Staff Support: {this.props.reduxState.clientFeedback.support} out of 5</li>,
+            <li key={3}>Additional Comment: {this.props.reduxState.clientFeedback.comments}</li>,
         ]
 
         switch (this.props.history.location.pathname) {
@@ -55,6 +55,7 @@ class FeedbackSummary extends Component {
     }
 
     render() {
+        // console.log(this.props.reduxState.clientFeedback);
         return (
             <div>
                 <h2>Feedback Survey Summary</h2>

@@ -5,16 +5,19 @@ import App from './components/App/App';
 import registerServiceWorker from './registerServiceWorker';
 
 //imports for using redux store and logger dev tool
-import {createStore, combineReducers, applyMiddleware} from 'redux';
-import {Provider} from 'react-redux';
-import logger from 'redux-logger';
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+
+// logger and middleware for testing
+// import {applyMiddleware} from 'redux';
+// import logger from 'redux-logger';
 
 //reducer to store feedback in state as object with key, properties
-const feedbackDefaultState = {feeling: null, understanding: null, support: null, comments: null}
+const feedbackDefaultState = { feeling: null, understanding: null, support: null, comments: "No comments given." }
 const clientFeedback = (state = feedbackDefaultState, action) => {
     switch (action.type) {
         case 'UPDATE_FEELING':
-        return {...state, ...action.payload}
+            return { ...state, ...action.payload }
         case 'UPDATE_UNDERSTANDING':
             return { ...state, ...action.payload }
         case 'UPDATE_SUPPORT':
@@ -29,7 +32,7 @@ const clientFeedback = (state = feedbackDefaultState, action) => {
 }
 
 const serverFeedback = (state = [], action) => {
-    if(action.type === "STORE_FEEDBACK") {
+    if (action.type === "STORE_FEEDBACK") {
         return action.payload;
     }
     return state;
@@ -40,8 +43,8 @@ const storeInstance = createStore(
         clientFeedback,
         serverFeedback
     }),
-    applyMiddleware(logger),
+    // applyMiddleware(logger),
 );
 
-ReactDOM.render(<Provider store={storeInstance}><App/></Provider>, document.getElementById('root'));
+ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, document.getElementById('root'));
 registerServiceWorker();

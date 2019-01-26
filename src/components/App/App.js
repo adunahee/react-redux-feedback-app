@@ -24,7 +24,7 @@ class App extends Component {
       method: 'GET',
       url: '/feedback',
     }).then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       this.props.dispatch({ type: "STORE_FEEDBACK", payload: response.data })
     }).catch((error) => {
       console.log('error in getFeedback', error);
