@@ -12,6 +12,12 @@ import logger from 'redux-logger';
 //reducer to store feedback in state as object with key, properties
 const feedbackDefaultState = {feeling: 3, understanding: 4, support: 5, comments: "Pulling through!"}
 const clientFeedback = (state = feedbackDefaultState, action) => {
+    switch (action.type) {
+        case 'UPDATE_FEELING':
+        return {...state, ...action.payload}
+        default:
+            break;
+    }
     //action types for each page of the feedback
     return state;
 }

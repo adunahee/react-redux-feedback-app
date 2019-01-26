@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 
 //components
-import BeginFeedback from './../Feedback/BeginFeedback.js'
+import BeginFeedback from './../Feedback/BeginFeedback.js';
+import Feeling from './../Feedback/Feeling.js'
 
 class App extends Component {
 
@@ -35,9 +36,12 @@ class App extends Component {
         <Router>
           <div>
             <nav>
+              <p>Remove Links Later</p>
               <Link to='/'>Begin Feedback</Link>
+              <Link to='/feeling'>Feeling</Link>
             </nav>
             <Route exact path='/' component={BeginFeedback}></Route>
+            <Route exact path='/feeling' component={Feeling}></Route>
           </div>
         </Router>
         <br />

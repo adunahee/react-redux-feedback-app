@@ -17,3 +17,7 @@
   font-size: large;
 }
 
+.radio-inputs {
+  display: inline-block;
+  padding: 20px;
+}
