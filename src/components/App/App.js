@@ -9,7 +9,8 @@ import BeginFeedback from './../Feedback/BeginFeedback.js';
 import Feeling from './../Feedback/Feeling.js';
 import Understanding from './../Feedback/Understanding.js';
 import Support from './../Feedback/Support.js';
-import Comments from './../Feedback/Comments.js'
+import Comments from './../Feedback/Comments.js';
+import FeedbackSummary from './../Feedback/FeedbackSummary.js';
 
 class App extends Component {
 
@@ -64,6 +65,7 @@ class App extends Component {
             <Route exact path='/comments' component={Comments}></Route>
           </div>
         </Router>
+        <FeedbackSummary />
         <br />
       </div>
     );
