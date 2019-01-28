@@ -1,14 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const pg = require('pg');
 
-const pool = new pg.Pool({
-    host: 'localhost',
-    port: 5432,
-    database: 'prime_feedback',
-    max: 10,
-    idleTimeoutMillis: 10000,
+//constructor for pool
+const Pool = require('./../modules/pool')
+
+const pool = Pool;
+
+// the pool will log when it connects to the database
+pool.on('connect', () => {
+    console.log('Postgesql connected');
 });
+
+// the pool with emit an error on behalf of any idle clients
+// it contains if a backend error or network partition happens
+pool.on('error', (err) => {
+    console.log('Unexpected error on idle client', err);
+    process.exit(-1);
+});
+
 
 router.get('', (req, res) => {
     pool.query('SELECT * FROM "feedback" ORDER BY "date" DESC, "id";').then(result => {
