@@ -11,7 +11,7 @@ const pool = new pg.Pool({
 });
 
 router.get('', (req, res) => {
-    pool.query('SELECT * FROM "feedback";').then(result => {
+    pool.query('SELECT * FROM "feedback" ORDER BY "date", "flagged" DESC;').then(result => {
         res.send(result.rows);
     }).catch(error => {
         console.log(`Error in feedback router get`, error);
@@ -31,7 +31,7 @@ router.post('/', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-    pool.query('UPDATE "feedback" SET "flagged" = NOT "flagged" WHERE "id" = $1;',
+    pool.query('UPDATE "feedback" SET "flagged" = NOT flagged WHERE "id" = $1;',
         [req.params.id]).then(
             (response) => { res.sendStatus(200); }).catch(error => {
                 res.sendStatus(500);

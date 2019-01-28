@@ -4,26 +4,40 @@ import Axios from 'axios';
 class AdminTableItems extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            feedbackArr: Object.values(this.props.feedback),
-        }
     }
 
+
+
     buildRow = () => {
-        return this.state.feedbackArr.map((value, i) => {
+        //array of values id, feeling, understanding, support, comments, flagged, date
+        const feedbackArr = Object.values(this.props.feedback);
+        return feedbackArr.map((value, i) => {
             //skips row for flagged value
             if (typeof value !== "boolean") {
                 return <td key={i}>{value}</td>
-            } else { return null }
+            } else if (typeof value === "boolean") {
+                let buttonName = '';
+                if (value === false) {
+                    buttonName = 'Flag';
+                } else { buttonName = 'Unflag'}
+                return <td>
+                    <button onClick={this.handleFlag}>
+                        {buttonName}
+                    </button>
+                    <button onClick={this.handleDelete}>
+                        Delete
+                    </button>
+                </td>
+            }
         })
     }
 
     rowFlagged = () => {
-        //in unflagged return true
-        if(this.state.feedbackArr.includes(false)){
-            return "unflagged";
-        } else if (this.state.feedbackArr.includes(true)) {
+        //if flagged true, make bg color yellow 
+        if (this.props.feedback.flagged) {
             return "flagged";
+        } else {
+            return "unflagged";
         }
     }
 
@@ -32,13 +46,14 @@ class AdminTableItems extends Component {
         Axios({
             method: 'PUT',
             url: `/feedback/${this.props.feedback.id}`,
-        }).then( (response) => {
+        }).then((response) => {
             this.props.getServerFeedback();
-            if (flagStatus === true){
-                alert('Feedback unflagged.')
-            } else if (flagStatus === false){
-                alert('Feedback flagged.')
-            }
+            //removed alert because felt clunky, works though
+            // if (flagStatus === true) {
+            //     alert('Feedback unflagged.')
+            // } else if (flagStatus === false) {
+            //     alert('Feedback flagged.')
+            // }
         }).catch(error => {
             console.log(`error flagging feedback`, error);
             alert('Unable to flag feedback at this time.');
@@ -48,18 +63,9 @@ class AdminTableItems extends Component {
 
     render() {
         // console.log(this.props.feedback);
-
         return (
             <tr className={this.rowFlagged()}>
                 {this.buildRow()}
-                <td>
-                    <button onClick={this.handleFlag}>
-                        Flag
-                    </button>
-                    <button onClick={this.handleDelete}>
-                        Delete
-                    </button>
-                </td>
             </tr>
         )
     }

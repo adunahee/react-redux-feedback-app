@@ -4,6 +4,12 @@ import axios from 'axios';
 import AdminTableItem from './../Admin/AdminTableItems.js';
 
 class AdminTable extends Component {
+    constructor(props){
+        super(props);
+        // this.state = {
+        //     serverFeedback: this.props.reduxState.serverFeedback,
+        // }
+    }
     componentDidMount() {
         this.getServerFeedback();
     }
@@ -15,6 +21,9 @@ class AdminTable extends Component {
         }).then((response) => {
             // console.log(response.data);
             this.props.dispatch({ type: "STORE_FEEDBACK", payload: response.data })
+            // this.setState({
+            //     serverFeedback: this.props.reduxState.serverFeedback,
+            // })
         }).catch((error) => {
             console.log('error in getFeedback', error);
         })
@@ -22,7 +31,7 @@ class AdminTable extends Component {
 
     buildTableItems = () => {
         // console.log(this.props.reduxState.serverFeedback);
-        return this.props.reduxState.serverFeedback.map((feedback, index) => {
+        return this.props.serverFeedback.map((feedback, index) => {
             return <AdminTableItem key={index} feedback={feedback} getServerFeedback={this.getServerFeedback}/>
         })
     }
@@ -39,20 +48,20 @@ class AdminTable extends Component {
                             <th>Understanding</th>
                             <th>Support</th>
                             <th>Comments</th>
-                            <th>Time Submitted</th>
-                            <th>Flag or Delete</th>
+                            <th>Change Status</th>
+                            <th>Date</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.buildTableItems()}
                     </tbody>
-                    <tfoot>
+                    {/* <tfoot>
                         <tr>
                             <td>
                                 metadata?
                       </td>
                         </tr>
-                    </tfoot>
+                    </tfoot> */}
                 </table>
 
             </div>
@@ -60,6 +69,8 @@ class AdminTable extends Component {
     }
 }
 
-const mapRStoProps = (reduxState) => ({ reduxState })
+const mapRStoProps = (reduxState) => ({ 
+    serverFeedback: reduxState.serverFeedback
+})
 
 export default connect(mapRStoProps)(AdminTable);
