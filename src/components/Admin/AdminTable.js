@@ -10,6 +10,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+import './Table.css';
+
 class AdminTable extends Component {
     componentDidMount() {
         this.getServerFeedback();
@@ -39,18 +41,18 @@ class AdminTable extends Component {
 
     render() {
         return (
-            <Paper className=".root">
-                <h2>Admin View of Feedback</h2>
+            <Paper className="root">
+                <h2>Feedback from the Class</h2>
                 <Table className="table">
-                    <TableHead>
+                    <TableHead className="th">
                         <TableRow>
-                            <TableCell>ID</TableCell>
-                            <TableCell>Feeling</TableCell>
-                            <TableCell>Understanding</TableCell>
-                            <TableCell>Support</TableCell>
-                            <TableCell>Comments</TableCell>
-                            <TableCell>Change Status</TableCell>
-                            <TableCell>Date</TableCell>
+                            <TableCell className="th">ID</TableCell>
+                            <TableCell className="th">Feeling</TableCell>
+                            <TableCell className="th">Understanding</TableCell>
+                            <TableCell className="th">Support</TableCell>
+                            <TableCell className="th">Comments</TableCell>
+                            <TableCell className="th">Change Status</TableCell>
+                            <TableCell className="th">Date</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

@@ -3,6 +3,11 @@ import Axios from 'axios';
 
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+import FlagIcon from '@material-ui/icons/Flag';
+import ReportIcon from '@material-ui/icons/Report';
+import ReportOffIcon from '@material-ui/icons/ReportOff';
 
 class AdminTableItems extends Component {
     buildRow = () => {
@@ -13,20 +18,21 @@ class AdminTableItems extends Component {
             feedbackArr.map((value, i) => {
                 //returns td when numeric or string value
                 if (typeof value !== "boolean") {
-                    return <td key={i}>{value}</td>
+                    return <TableCell className="cell" key={i}>{value}</TableCell>
                     //if flag status value, conditionally renders td with button
                 } else if (typeof value === "boolean") {
-                    let buttonName = '';
+                    let buttonIcon = '';
                     if (value === false) {
-                        buttonName = 'Flag';
-                    } else { buttonName = 'Unflag' }
-                    return (<TableCell key={i}>
-                        <button onClick={this.handleFlag}>
-                            {buttonName}
-                        </button>
-                        <button onClick={this.handleDelete}>
-                            Delete
-                    </button>
+                        buttonIcon = <ReportIcon />;
+                    } else { buttonIcon = <ReportOffIcon /> }
+                    return (
+                    <TableCell className="cell" key={i}>
+                        <Button onClick={this.handleFlag} variant="contained" className="button">
+                            {buttonIcon}
+                        </Button>
+                            <Button onClick={this.handleDelete} variant="contained" color="secondary" className="button">
+                           <DeleteIcon />
+                        </Button>
                     </TableCell>)
                 }
             }))

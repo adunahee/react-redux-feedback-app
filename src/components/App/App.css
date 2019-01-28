@@ -22,10 +22,3 @@
   padding: 20px;
 }
 
-.flagged {
-  background-color: rgba(255, 140, 0, 0.726);
-}
-
-.unflagged {
-  background-color: rgba(0, 128, 0, 0.671);
-}
