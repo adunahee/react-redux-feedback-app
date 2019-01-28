@@ -9,8 +9,8 @@ import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
 // logger and middleware for testing
-import {applyMiddleware} from 'redux';
-import logger from 'redux-logger';
+// import {applyMiddleware} from 'redux';
+// import logger from 'redux-logger';
 
 //reducer to store feedback in state as object with key, properties
 const feedbackDefaultState = { feeling: null, understanding: null, support: null, comments: "No comments given." }
@@ -24,6 +24,8 @@ const clientFeedback = (state = feedbackDefaultState, action) => {
             return { ...state, ...action.payload }
         case 'UPDATE_COMMENTS':
             return { ...state, ...action.payload }
+        case 'RESET_CLIENT':
+            return feedbackDefaultState;
         default:
             break;
     }
@@ -43,7 +45,7 @@ const storeInstance = createStore(
         clientFeedback,
         serverFeedback
     }),
-    applyMiddleware(logger),
+    // applyMiddleware(logger),
 );
 
 ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, document.getElementById('root'));

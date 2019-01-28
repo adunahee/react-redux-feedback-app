@@ -3,6 +3,13 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import AdminTableItem from './../Admin/AdminTableItems.js';
 
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
 class AdminTable extends Component {
     componentDidMount() {
         this.getServerFeedback();
@@ -32,23 +39,23 @@ class AdminTable extends Component {
 
     render() {
         return (
-            <div>
+            <Paper className=".root">
                 <h2>Admin View of Feedback</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Feeling</th>
-                            <th>Understanding</th>
-                            <th>Support</th>
-                            <th>Comments</th>
-                            <th>Change Status</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <Table className="table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>ID</TableCell>
+                            <TableCell>Feeling</TableCell>
+                            <TableCell>Understanding</TableCell>
+                            <TableCell>Support</TableCell>
+                            <TableCell>Comments</TableCell>
+                            <TableCell>Change Status</TableCell>
+                            <TableCell>Date</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
                         {this.buildTableItems()}
-                    </tbody>
+                    </TableBody>
                     {/* <tfoot>
                         <tr>
                             <td>
@@ -56,9 +63,9 @@ class AdminTable extends Component {
                       </td>
                         </tr>
                     </tfoot> */}
-                </table>
+                </Table>
 
-            </div>
+            </Paper>
         )
     }
 }

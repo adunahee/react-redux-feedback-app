@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import Axios from 'axios';
 
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+
 class AdminTableItems extends Component {
     buildRow = () => {
         //array of values id, feeling, understanding, support, comments, flagged, date
@@ -17,14 +20,14 @@ class AdminTableItems extends Component {
                     if (value === false) {
                         buttonName = 'Flag';
                     } else { buttonName = 'Unflag' }
-                    return (<td key={i}>
+                    return (<TableCell key={i}>
                         <button onClick={this.handleFlag}>
                             {buttonName}
                         </button>
                         <button onClick={this.handleDelete}>
                             Delete
                     </button>
-                    </td>)
+                    </TableCell>)
                 }
             }))
     }
@@ -77,9 +80,9 @@ class AdminTableItems extends Component {
     render() {
         // console.log(this.props.feedback);
         return (
-            <tr className={this.rowFlagged()}>
+            <TableRow className={this.rowFlagged()}>
                 {this.buildRow()}
-            </tr>
+            </TableRow>
         )
     }
 }
