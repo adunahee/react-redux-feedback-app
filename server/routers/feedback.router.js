@@ -22,12 +22,21 @@ router.get('', (req, res) => {
 router.post('/', (req, res) => {
     // console.log(req.body);
     pool.query(`INSERT INTO "feedback" ("feeling", "understanding", "support", "comments") 
-                VALUES ($1, $2, $3, $4);`, Object.values(req.body)).then( (response) => {
-                    res.sendStatus(201);
-                }).catch(error => {
-                    res.sendStatus(500);
-                    console.log(`error POSTing in feedback.router`, error);
-                })
+                VALUES ($1, $2, $3, $4);`, Object.values(req.body)).then((response) => {
+        res.sendStatus(201);
+    }).catch(error => {
+        res.sendStatus(500);
+        console.log(`error POSTing in feedback.router`, error);
+    })
+})
+
+router.put('/:id', (req, res) => {
+    pool.query('UPDATE "feedback" SET "flagged" = NOT "flagged" WHERE "id" = $1;',
+        [req.params.id]).then(
+            (response) => { res.sendStatus(200); }).catch(error => {
+                res.sendStatus(500);
+                console.log(`error in PUT in feedback.router`, error);
+            })
 })
 
 module.exports = router;

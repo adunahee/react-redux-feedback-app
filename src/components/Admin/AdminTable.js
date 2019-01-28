@@ -21,9 +21,9 @@ class AdminTable extends Component {
     }
 
     buildTableItems = () => {
-        console.log(this.props.reduxState.serverFeedback);
+        // console.log(this.props.reduxState.serverFeedback);
         return this.props.reduxState.serverFeedback.map((feedback, index) => {
-            return <AdminTableItem key={index} feedback={Object.values(feedback)} />
+            return <AdminTableItem key={index} feedback={feedback} getServerFeedback={this.getServerFeedback}/>
         })
     }
 
