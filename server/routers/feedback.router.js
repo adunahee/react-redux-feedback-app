@@ -11,7 +11,7 @@ const pool = new pg.Pool({
 });
 
 router.get('', (req, res) => {
-    pool.query('SELECT * FROM "feedback" ORDER BY "date", "flagged" DESC;').then(result => {
+    pool.query('SELECT * FROM "feedback" ORDER BY "date" DESC, "id";').then(result => {
         res.send(result.rows);
     }).catch(error => {
         console.log(`Error in feedback router get`, error);
