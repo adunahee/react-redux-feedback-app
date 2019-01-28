@@ -5,7 +5,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
-import FlagIcon from '@material-ui/icons/Flag';
 import ReportIcon from '@material-ui/icons/Report';
 import ReportOffIcon from '@material-ui/icons/ReportOff';
 
