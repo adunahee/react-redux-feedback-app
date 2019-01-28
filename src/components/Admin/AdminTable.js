@@ -23,14 +23,14 @@ class AdminTable extends Component {
     buildTableItems = () => {
         console.log(this.props.reduxState.serverFeedback);
         return this.props.reduxState.serverFeedback.map((feedback, index) => {
-            return <AdminTableItem key={index} feedback={feedback} />
+            return <AdminTableItem key={index} feedback={Object.values(feedback)} />
         })
     }
 
     render() {
         return (
             <div>
-                <h2>Admin View of Feedback Submitted</h2>
+                <h2>Admin View of Feedback</h2>
                 <table>
                     <thead>
                         <tr>
@@ -39,6 +39,8 @@ class AdminTable extends Component {
                             <th>Understanding</th>
                             <th>Support</th>
                             <th>Comments</th>
+                            <th>Time Submitted</th>
+                            <th>Flag or Delete</th>
                         </tr>
                     </thead>
                     <tbody>
