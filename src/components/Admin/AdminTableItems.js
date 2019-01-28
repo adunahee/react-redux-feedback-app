@@ -2,34 +2,31 @@ import React, { Component } from 'react'
 import Axios from 'axios';
 
 class AdminTableItems extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-
-
     buildRow = () => {
         //array of values id, feeling, understanding, support, comments, flagged, date
         const feedbackArr = Object.values(this.props.feedback);
-        return feedbackArr.map((value, i) => {
-            //skips row for flagged value
-            if (typeof value !== "boolean") {
-                return <td key={i}>{value}</td>
-            } else if (typeof value === "boolean") {
-                let buttonName = '';
-                if (value === false) {
-                    buttonName = 'Flag';
-                } else { buttonName = 'Unflag'}
-                return <td>
-                    <button onClick={this.handleFlag}>
-                        {buttonName}
+        //returns array with td according to data type
+        return (
+            feedbackArr.map((value, i) => {
+                //returns td when numeric or string value
+                if (typeof value !== "boolean") {
+                    return <td key={i}>{value}</td>
+                    //if flag status value, conditionally renders td with button
+                } else if (typeof value === "boolean") {
+                    let buttonName = '';
+                    if (value === false) {
+                        buttonName = 'Flag';
+                    } else { buttonName = 'Unflag' }
+                    return (<td key={i}>
+                        <button onClick={this.handleFlag}>
+                            {buttonName}
+                        </button>
+                        <button onClick={this.handleDelete}>
+                            Delete
                     </button>
-                    <button onClick={this.handleDelete}>
-                        Delete
-                    </button>
-                </td>
-            }
-        })
+                    </td>)
+                }
+            }))
     }
 
     rowFlagged = () => {
@@ -42,13 +39,13 @@ class AdminTableItems extends Component {
     }
 
     handleFlag = () => {
-        const flagStatus = this.props.feedback.flagged;
+        //removed alert because felt clunky, works though
+        // const flagStatus = this.props.feedback.flagged;
         Axios({
             method: 'PUT',
             url: `/feedback/${this.props.feedback.id}`,
         }).then((response) => {
             this.props.getServerFeedback();
-            //removed alert because felt clunky, works though
             // if (flagStatus === true) {
             //     alert('Feedback unflagged.')
             // } else if (flagStatus === false) {
@@ -60,6 +57,22 @@ class AdminTableItems extends Component {
         })
     }
 
+    handleDelete = () => {
+        let confirmation = window.confirm('Are you sure you want to delete this feedback?');
+        if (confirmation) {
+            Axios({
+                method: 'DELETE',
+                url: `/feedback/${this.props.feedback.id}`
+            }).then(response => {
+                this.props.getServerFeedback();
+            }).catch(error => {
+                alert('Could not update feedback at this time.')
+            })
+        } else {
+            alert('User feedback was not deleted.')
+        }
+
+    }
 
     render() {
         // console.log(this.props.feedback);

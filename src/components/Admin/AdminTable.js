@@ -4,12 +4,6 @@ import axios from 'axios';
 import AdminTableItem from './../Admin/AdminTableItems.js';
 
 class AdminTable extends Component {
-    constructor(props){
-        super(props);
-        // this.state = {
-        //     serverFeedback: this.props.reduxState.serverFeedback,
-        // }
-    }
     componentDidMount() {
         this.getServerFeedback();
     }
